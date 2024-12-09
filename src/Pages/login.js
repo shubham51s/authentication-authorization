@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  const handleLoginClick = () => {
+    // toast.success("Login successful");
+    toast.error("Please enter all fields");
+  };
 
   const navigateToSignUp = () => {
     navigate("/signup");
@@ -27,6 +35,8 @@ function Login() {
                 <input
                   placeholder="Enter email address"
                   id="mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   type="text"
                   className="rounded-3xl h-10 pl-4 outline-none bg-gray-200"
                 />
@@ -42,13 +52,18 @@ function Login() {
                   <input
                     placeholder="Enter password"
                     id="password"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
                     type="password"
                     className="rounded-3xl h-10 pl-4 outline-none bg-gray-200"
                   />
                 </div>
               </div>
             </div>
-            <button className="w-full bg-gray-800 py-3 rounded-3xl text-white text-lg hover:bg-gray-900 transition-all duration-300 ease-in-out">
+            <button
+              onClick={handleLoginClick}
+              className="w-full bg-gray-800 py-3 rounded-3xl text-white text-lg hover:bg-gray-900 transition-all duration-300 ease-in-out"
+            >
               Sign In
             </button>
           </div>

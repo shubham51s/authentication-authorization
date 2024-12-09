@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function SignUp() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  const handleSignupClick = () => {
+    console.log("signup button clicked");
+    // toast.success("Signup successful");
+    toast.error("Please enter all fields");
+  };
 
   const navigateToLogin = () => {
     navigate("/login");
@@ -27,6 +37,8 @@ function SignUp() {
                 <input
                   placeholder="Enter full name"
                   id="fullname"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className="rounded-3xl h-10 pl-4 outline-none bg-gray-200"
                 />
               </div>
@@ -40,6 +52,8 @@ function SignUp() {
                 <input
                   placeholder="Enter email address"
                   id="mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="rounded-3xl h-10 pl-4 outline-none bg-gray-200"
                 />
               </div>
@@ -54,12 +68,17 @@ function SignUp() {
                   <input
                     placeholder="Enter password"
                     id="password"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
                     className="rounded-3xl h-10 pl-4 outline-none bg-gray-200"
                   />
                 </div>
               </div>
             </div>
-            <button className="w-full bg-gray-800 py-3 rounded-3xl text-white text-lg hover:bg-gray-900 transition-all duration-300 ease-in-out">
+            <button
+              onClick={handleSignupClick}
+              className="w-full bg-gray-800 py-3 rounded-3xl text-white text-lg hover:bg-gray-900 transition-all duration-300 ease-in-out"
+            >
               Sign up
             </button>
           </div>
@@ -67,7 +86,7 @@ function SignUp() {
         <div className="w-2/4 h-full flex items-center justify-center bg-gray-800 rounded-br-2xl">
           <div className="h-full flex flex-col justify-center items-center gap-5">
             <div className="text-white font-bold text-4xl">
-              Welcome to Login
+              Create new account
             </div>
             <p className="text-white font-medium text-base">
               Already have an account?
